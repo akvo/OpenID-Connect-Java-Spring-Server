@@ -542,7 +542,7 @@ public class OIDCAuthenticationFilter extends AbstractAuthenticationProcessingFi
 				}
 
 				// compare the nonce to our stored claim
-				String nonce = idClaims.getStringClaim("nonce");
+				/*String nonce = idClaims.getStringClaim("nonce");
 				if (Strings.isNullOrEmpty(nonce)) {
 
 					logger.error("ID token did not contain a nonce claim.");
@@ -559,7 +559,7 @@ public class OIDCAuthenticationFilter extends AbstractAuthenticationProcessingFi
 							"Possible replay attack detected! The comparison of the nonce in the returned "
 									+ "ID Token to the session " + NONCE_SESSION_VARIABLE + " failed. Expected " + storedNonce + " got " + nonce + ".");
 				}
-
+*/
 				// pull the subject (user id) out as a claim on the id_token
 
 				String userId = idClaims.getSubject();
