@@ -23,7 +23,9 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.http.client.HttpClient;
-import org.apache.http.impl.client.SystemDefaultHttpClient;
+import org.apache.http.conn.ClientConnectionManager;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.esxx.js.protocol.GAEConnectionManager;
 import org.mitre.jose.keystore.JWKSetKeyStore;
 import org.mitre.jwt.encryption.service.JwtEncryptionAndDecryptionService;
 import org.mitre.jwt.encryption.service.impl.DefaultJwtEncryptionAndDecryptionService;
@@ -105,7 +107,8 @@ public class JWKSetCacheService {
 	 *
 	 */
 	private class JWKSetVerifierFetcher extends CacheLoader<String, JwtSigningAndValidationService> {
-		private HttpClient httpClient = new SystemDefaultHttpClient();
+		private ClientConnectionManager conMgr = new GAEConnectionManager();
+		private HttpClient httpClient = new DefaultHttpClient(conMgr);
 		private HttpComponentsClientHttpRequestFactory httpFactory = new HttpComponentsClientHttpRequestFactory(httpClient);
 		private RestTemplate restTemplate = new RestTemplate(httpFactory);
 
@@ -133,7 +136,8 @@ public class JWKSetCacheService {
 	 *
 	 */
 	private class JWKSetEncryptorFetcher extends CacheLoader<String, JwtEncryptionAndDecryptionService> {
-		private HttpClient httpClient = new SystemDefaultHttpClient();
+		private ClientConnectionManager conMgr = new GAEConnectionManager();
+		private HttpClient httpClient = new DefaultHttpClient(conMgr);
 		private HttpComponentsClientHttpRequestFactory httpFactory = new HttpComponentsClientHttpRequestFactory(httpClient);
 		private RestTemplate restTemplate = new RestTemplate(httpFactory);
 		/* (non-Javadoc)

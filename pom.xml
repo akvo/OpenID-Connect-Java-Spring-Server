@@ -295,8 +295,12 @@
         	<version>${org.slf4j-version}</version>
         </dependency>
 	</dependencies>
-
     <repositories>
+		<repository>
+		    <id>central</id>
+		    <name>Maven Repository Switchboard</name>
+		    <url>http://repo1.maven.org/maven2</url>
+		</repository>
 		<repository>
 		    <id>spring-milestone</id>
 		    <name>Spring Maven MILESTONE Repository</name>
